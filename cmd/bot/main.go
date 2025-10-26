@@ -3,23 +3,18 @@ package main
 import (
 	"log"
 
-	"github.com/shabbirtoha/telegram-mail-bot/internal/bot" // change this to your module path
-
-	"github.com/joho/godotenv"
+	"github.com/shabbirtoha/telegram-mail-bot/internal/bot"
 )
 
 func main() {
-	// Load .env file
-	if err := godotenv.Load(); err != nil {
-		log.Println("⚠️  No .env file found, using system environment variables")
-	}
-
-	// Start the bot
 	b, err := bot.NewBotFromEnv()
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("failed to initialize bot: %v", err)
 	}
 
+	// start scheduler worker (reads scheduled emails from DB and sends them)
+	go b.StartScheduledWorker()
+
 	log.Println("🤖 Bot is running...")
-	b.Tele.Start()
+	b.Start()
 }
