@@ -156,10 +156,9 @@ Run it:
         
 
 or on Windows:
-
-    bash
-    bot.exe
-        
+    
+    cmd
+    bot.exe 
 
 ### 🧩 Cross-compile for other platforms
 
