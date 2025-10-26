@@ -9,43 +9,33 @@ No complex setup — just message your bot, and it sends your mail instantly! �
 🌟 Features
 -----------
 
-*   ✅ Send emails via Telegram instantly
-*   ✅ Secure `.env` configuration for mail credentials
-*   ✅ Supports **Gmail**, **Outlook**, and **Yahoo**
-*   ✅ Simple setup, beginner-friendly Go project
-*   ✅ Fully open-source and extendable
-
-🗂️ Project Structure
----------------------
-
-    
-    telegram-mail-bot/
-    ├── cmd/
-    │   └── bot/
-    │       └── main.go          # Entry point
-    ├── internal/
-    │   └── bot/
-    │       └── bot.go           # Telegram & Mail logic
-    ├── .env.example             # Example configuration
-    ├── .env                     # Your secrets (ignored by git)
-    ├── go.mod
-    ├── go.sum
-    └── README.md
-        
+* ✅ Send emails via Telegram instantly
+* ✅ Multi-recipient support (send to multiple email addresses at once)
+* ✅ Attach files to emails (single file per email)
+* ✅ Schedule emails for later delivery (YYYY-MM-DD HH:MM or send immediately)
+* ✅ Interactive step-by-step email composer in Telegram
+* ✅ Preview email before sending (recipients, subject, body, attachment)
+* ✅ Cancel email composition anytime with /cancel
+* ✅ View pending scheduled emails with /scheduled
+* ✅ Secure .env configuration for mail credentials
+* ✅ Supports Gmail, Outlook, Yahoo (SMTP configurable)
+* ✅ Beginner-friendly Go project, fully open-source and extendable
+* ✅ Works with both text body and attachments
+* ✅ Background worker automatically sends scheduled emails
+* ✅ Logs success and errors for email sending
 
 ⚙️ Setup Guide
 --------------
 
 ### 🧩 Step 1: Clone the repository
 
-    bash
     git clone https://github.com/YOUR_GITHUB_USERNAME/telegram-mail-bot.git
+    
     cd telegram-mail-bot
         
 
 ### 🧩 Step 2: Install dependencies
 
-    bash
     go mod tidy
         
 
@@ -55,7 +45,6 @@ Create a `.env` file in your project root with the following content 👇
 
 #### ✉️ For Gmail
 
-    bash
     TELEGRAM_BOT_TOKEN=your_telegram_bot_token
     SMTP_HOST=smtp.gmail.com
     SMTP_PORT=587
@@ -68,7 +57,6 @@ Normal Gmail passwords will not work — Google blocks “less secure apps.”
 
 #### ✉️ For Outlook
 
-    bash
     TELEGRAM_BOT_TOKEN=your_telegram_bot_token
     SMTP_HOST=smtp.office365.com
     SMTP_PORT=587
@@ -78,7 +66,6 @@ Normal Gmail passwords will not work — Google blocks “less secure apps.”
 
 #### ✉️ For Yahoo Mail
 
-    bash
     TELEGRAM_BOT_TOKEN=your_telegram_bot_token
     SMTP_HOST=smtp.mail.yahoo.com
     SMTP_PORT=587
@@ -99,23 +86,7 @@ Normal Gmail passwords will not work — Google blocks “less secure apps.”
 
 ### 🚀 Step 5: Run the Bot
 
-    bash
     go run ./cmd/bot
-        
-
-If everything is set up correctly, you’ll see:
-
-    
-    🤖 Bot is running...
-        
-
-Now, in Telegram, send a message in this format:
-
-    
-    to: example@gmail.com
-    subject: Test Email
-    body: Hello from my Go Telegram bot!
-        
 
 ✅ Within seconds, you’ll receive the email in your inbox.
 
@@ -129,14 +100,6 @@ Now, in Telegram, send a message in this format:
 | Mail not sending | Use an App Password and check your SMTP host/port |
 | Timeout or auth errors | Make sure 2FA is enabled and you used the correct app password |
 
-🧩 Planned Features
--------------------
-
-*   📦 File attachments (images, PDFs, etc.)
-*   🕓 Scheduled emails
-*   🧾 Email logs (SQLite/PostgreSQL)
-*   🔒 OAuth2 authentication for Gmail
-*   🧰 Admin command panel
 
 ⚙️ Build a Compiled Version
 ---------------------------
@@ -145,19 +108,16 @@ To create a standalone executable (so others can run it without Go):
 
 ### 🧩 Build for your system
 
-    bash
     go build -o bot ./cmd/bot
         
 
 Run it:
 
-    bash
     ./bot
         
 
 or on Windows:
     
-    cmd
     bot.exe 
 
 ### 🧩 Cross-compile for other platforms
